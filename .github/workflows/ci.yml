@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Ensure full history for DVC
+          fetch-depth: 0  # Full Git history for DVC
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -26,14 +26,8 @@ jobs:
           pip install -r requirements.txt
           pip install dvc[all]
 
-      - name: Configure DVC
-        run: |
-          dvc init --no-scm  # Initialize DVC without Git (since checkout handles Git)
-          dvc remote add -d storage s3://your-bucket  # Optional: Add remote if using S3 (skip if local)
-          dvc pull  # Pull data if cached remotely (skip if data is in repo)
-
       - name: Run DVC pipeline
-        run: dvc repro
+        run: dvc repro --force
 
       - name: Show experiment results
         run: dvc metrics show
