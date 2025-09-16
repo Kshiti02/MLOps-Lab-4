@@ -1,0 +1,17 @@
+data:
+  raw: data/raw.csv
+  train: data/processed/train.csv
+  test: data/processed/test.csv
+  target_col: default.payment.next.month
+  model: models/model.pkl
+preprocessing:
+  scale: true
+  encode: false
+training:
+  test_size: 0.2
+  random_state: 42
+model:
+  params:
+    n_estimators: 300
+    max_depth: 7
+    random_state: 42
