@@ -12,6 +12,6 @@ training:
   random_state: 42
 model:
   params:
-    n_estimators: 300
-    max_depth: 7
+    n_estimators: 200
+    max_depth: 10
     random_state: 42
